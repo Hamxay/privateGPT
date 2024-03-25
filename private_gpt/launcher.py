@@ -26,7 +26,7 @@ def create_app(root_injector: Injector) -> FastAPI:
     async def bind_injector_to_request(request: Request) -> None:
         request.state.injector = root_injector
 
-    app = FastAPI(dependencies=[Depends(bind_injector_to_request)],route_path="/private-gpt")
+    app = FastAPI(dependencies=[Depends(bind_injector_to_request)],root_path="/private-gpt")
 
     app.include_router(completions_router)
     app.include_router(chat_router)
